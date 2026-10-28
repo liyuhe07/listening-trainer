@@ -1,0 +1,11 @@
+{
+ "name": "model.onnx",
+ "size": 29596978,
+ "sha256": "357a834f702b80161e5b981182c038e18553c1f2ca752ed6cec2052365d4129b",
+ "parts": [
+  {
+   "file": "model.onnx",
+   "size": 29596978
+  }
+ ]
+}

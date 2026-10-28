@@ -1,0 +1,23 @@
+{
+  "collection": "示例",
+  "title": "对话 · 预约游泳课",
+  "intro": "Sample recording, part one. You will hear a woman phoning a sports centre about swimming lessons. First, you have some time to look at questions one to five.",
+  "voices": { "MAN": "en-gb-alan-low", "WOMAN": "en-gb-southern_english_female-low", "intro": "en-gb-alan-low" },
+  "turns": [
+    { "speaker": "MAN", "text": "Good morning, Riverside Sports Centre. How can I help you?" },
+    { "speaker": "WOMAN", "text": "Hello. I'm calling about the swimming lessons for adults. Are there any places left on the evening course?" },
+    { "speaker": "MAN", "text": "Let me have a look. The Tuesday group is full, I'm afraid, but there are still three places on Thursday." },
+    { "speaker": "WOMAN", "text": "Thursday would be fine. What time does it start?" },
+    { "speaker": "MAN", "text": "At a quarter past seven, and each lesson lasts forty-five minutes." },
+    { "speaker": "WOMAN", "text": "And how much does the whole course cost?" },
+    { "speaker": "MAN", "text": "It's £62 for eight weeks, and that includes the use of the gym on the same evening.", "say": "It's sixty-two pounds for eight weeks, and that includes the use of the gym on the same evening." },
+    { "speaker": "WOMAN", "text": "That sounds reasonable. Do I need to bring any equipment?" },
+    { "speaker": "MAN", "text": "Just a towel and a swimming cap. We provide floats and goggles for beginners." },
+    { "speaker": "WOMAN", "text": "Great. Can I book a place now?" },
+    { "speaker": "MAN", "text": "Of course. Could I have your surname, please?" },
+    { "speaker": "WOMAN", "text": "It's Hartley. That's H-A-R-T-L-E-Y.", "say": "It's Hartley. That's H, A, R, T, L, E, Y." },
+    { "speaker": "MAN", "text": "Thank you. And a contact number?" },
+    { "speaker": "WOMAN", "text": "Yes, it's 07946 318 205.", "say": "Yes, it's oh seven nine four six, three one eight, two oh five." },
+    { "speaker": "MAN", "text": "Lovely. The first lesson is on the twelfth of March, so please arrive about ten minutes early to fill in a short health questionnaire." }
+  ]
+}

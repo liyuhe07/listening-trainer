@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>精听练习器</title>
+<meta name="description" content="在浏览器里导入你自己的英语听力音频和原文，自动逐句对齐，做盲听和挖空听写。数据只保存在本机。">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#09090a" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="精听练习器"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="apple-touch-icon" href="icon-180.png">
+<script>try{if(localStorage.getItem('lt-theme')==='dark'||!localStorage.getItem('lt-theme')&&matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.classList.add('dark');}catch(e){}</script>
+<link rel="stylesheet" href="app/styles.css"><link rel="stylesheet" href="app/library.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V19a1.5 1.5 0 0 1-1.5 1.5h-4.5v-6h-5v6H5A1.5 1.5 0 0 1 3.5 19z"/></symbol>
+<symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><path d="M4 14.5h2.5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM20 14.5h-2.5a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1H19a1 1 0 0 0 1-1z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2 2 4-4"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5.5M12 16.3v.2"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 20.5h17M6.5 17v-5M11.5 17V6.5M16.5 17v-8"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 20h14"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-8.5 8.5M18.5 14v4.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5V7a1.5 1.5 0 0 1 1.5-1.5H10"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A7.5 7.5 0 1 1 9.5 4.5a6 6 0 0 0 10 10z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.8"/><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M8.5 5.4v13.2a1 1 0 0 0 1.53.85l10.3-6.6a1 1 0 0 0 0-1.7l-10.3-6.6a1 1 0 0 0-1.53.85z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><rect fill="currentColor" stroke="none" x="6.5" y="5" width="4" height="14" rx="1.2"/><rect fill="currentColor" stroke="none" x="13.5" y="5" width="4" height="14" rx="1.2"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 4v5h5"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 3 3 3-3 3"/><path d="M4 11.5V10a4 4 0 0 1 4-4h12M7 21l-3-3 3-3"/><path d="M20 12.5V14a4 4 0 0 1-4 4H4"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z"/><path d="M14 3.5V8h4.5M9 13h6M9 16.5h4"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.2"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.2a4 4 0 0 0-5.3 5.3L3.8 17a1.6 1.6 0 0 0 2.3 2.3l5.4-5.4a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.2-.6-.6-2.2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M10 3.8h4M6.5 7l.8 11.6a1.8 1.8 0 0 0 1.8 1.6h5.8a1.8 1.8 0 0 0 1.8-1.6L17.5 7M10 11v5.5M14 11v5.5"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21a6 6 0 0 0 6-6c0-3.8-2.6-6.2-4.2-9.5-.8 2.6-2.4 3.9-3.6 5.3-.5-.9-1.2-1.6-2-2.1C7 10.5 6 12.5 6 15a6 6 0 0 0 6 6z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-locate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/><circle cx="12" cy="12" r="1.5"/></symbol>
+<symbol id="i-follow" viewBox="0 0 24 24"><path d="M6 4.5v15M10 8h8M10 12h10M10 16h6"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M5 10v4M9 7v10M13 4.5v15M17 8v8M21 10.5v3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M14.5 7.5l3 3"/></symbol>
+<symbol id="i-library" viewBox="0 0 24 24"><path d="M4.5 4.5h3v15h-3zM10 4.5h3v15h-3z"/><path d="m15.5 5.2 2.9-.8 3.6 14.5-2.9.7z"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+</defs></svg>
+<div id="drawer-backdrop" hidden></div>
+<aside class="sidebar" id="sidebar">
+ <div class="brand"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15"/><path d="M17 27v10M27 20v24M37 15v34M47 24v16"/></svg><div>精听练习器<small>INTENSIVE LISTENING</small></div><button id="nav-fold" class="nav-fold" aria-controls="main-nav" aria-expanded="true"><span>收起菜单</span><svg class="icon"><use href="#i-chevron"/></svg></button></div>
+ <nav class="main-nav" id="main-nav" aria-label="功能"><button data-view="home"><svg class="icon"><use href="#i-home"/></svg><span class="nav-label">首页</span></button><button data-view="listen"><svg class="icon"><use href="#i-headphones"/></svg><span class="nav-label">精听练习</span></button><button data-view="review"><svg class="icon"><use href="#i-calendar"/></svg><span class="nav-label">今日复习</span><span class="badge" id="due-nav" hidden>0</span></button><button data-view="mistakes"><svg class="icon"><use href="#i-alert"/></svg><span class="nav-label">错题本</span></button><button data-view="vocab"><svg class="icon"><use href="#i-bookmark"/></svg><span class="nav-label">生词本</span><span class="badge" id="vocab-nav" hidden>0</span></button><button data-view="index"><svg class="icon"><use href="#i-list"/></svg><span class="nav-label">考点索引</span></button><button data-view="stats"><svg class="icon"><use href="#i-chart"/></svg><span class="nav-label">学习统计</span></button><button data-view="library"><svg class="icon"><use href="#i-library"/></svg><span class="nav-label">题库管理</span></button></nav>
+ <div class="library-label">题库 <span id="library-count"></span></div><label class="searchbox"><svg class="icon"><use href="#i-search"/></svg><input id="search" placeholder="搜索原文单词" aria-label="搜索原文单词"></label>
+ <div id="tree"></div><div id="search-results" hidden></div>
+ <div class="sidebar-bottom"><div class="local-state"><span class="local-dot"></span>只保存在本机 · 不上传</div><div class="data-actions"><button data-action="import-new"><svg class="icon"><use href="#i-plus"/></svg>导入新材料</button><button id="backup"><svg class="icon"><use href="#i-download"/></svg>备份学习记录</button><button id="restore"><svg class="icon"><use href="#i-upload"/></svg>恢复学习记录</button></div></div>
+</aside>
+<div class="workspace">
+ <header class="topbar"><button id="menu-toggle" class="icon-button" aria-label="打开题库与菜单" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><div id="breadcrumb"></div><div class="preferences"><label class="font-pref">字号 <select id="font-size" aria-label="正文字号"><option>14</option><option selected>16</option><option>18</option><option>20</option></select></label><button id="theme" class="icon-button" title="切换深色主题" aria-label="切换深色主题"><svg class="icon"><use href="#i-moon"/></svg><span>深色</span></button></div></header>
+ <div id="storage-alert" class="alert danger" hidden role="alert"></div>
+ <main id="main">
+  <section id="listen-view" hidden>
+   <div class="section-heading"><div class="title-block"><div class="eyebrow" id="section-collection">INTENSIVE LISTENING</div><div class="title-row"><h1 id="section-title"></h1><span id="timing-tag" class="tag muted-tag" hidden>暂不支持逐句定位</span></div></div><div id="section-switch" class="section-switch"></div></div>
+   <div class="toolbar"><div class="progress-block"><span id="progress">0 / 0 空</span><div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div></div><div class="toolbar-actions"><button id="weak" class="tool-button" aria-pressed="false"><svg class="icon"><use href="#i-target"/></svg>薄弱段落重练</button><button id="reveal" class="tool-button"><svg class="icon"><use href="#i-eye"/></svg>显示全部答案</button><button id="edit-section" class="tool-button"><svg class="icon"><use href="#i-edit"/></svg>校对时间轴与挖空</button><span class="tool-gap"></span><button id="reset" class="tool-button"><svg class="icon"><use href="#i-rotate"/></svg>重做本节</button></div></div>
+   <div class="mode-tabs"><div class="segmented" role="group" aria-label="练习模式"><button id="blind-mode" class="active"><svg class="icon"><use href="#i-headphones"/></svg>盲听</button><button id="full-mode"><svg class="icon"><use href="#i-list"/></svg>挖空练习</button></div><button id="submit" class="primary">提交本节 <kbd class="kbd-on-primary">⌘ / Ctrl ↵</kbd></button></div>
+   <div id="player-sentinel" aria-hidden="true"></div>
+   <section id="player-panel" class="player-panel" aria-label="音频播放器">
+    <div class="player-main"><button id="play" class="play-button" aria-label="播放"><svg class="icon"><use href="#i-play"/></svg></button><div class="seek-area"><div class="player-caption"><strong id="audio-label"></strong><span id="playing-state">准备就绪</span></div><div class="seek-wrap"><input id="seek" type="range" min="0" max="1" value="0" step="0.01" aria-label="音频进度"><span id="seek-tip" hidden>00:00</span></div><div class="time-row"><span id="current-time">00:00</span><span id="duration">--:--</span></div></div></div>
+    <div class="player-options"><button id="back5" class="chip" title="回退5秒"><svg class="icon"><use href="#i-rotate"/></svg>5 秒</button><label class="chip speed-chip">语速 <select id="speed" aria-label="播放速度"><option>0.5</option><option>0.6</option><option>0.7</option><option>0.8</option><option>0.9</option><option selected>1.0</option><option>1.1</option><option>1.2</option><option>1.3</option><option>1.4</option><option>1.5</option></select>×</label><div class="divider"></div><div class="ab-group"><button id="set-a" class="chip">A 起点</button><button id="set-b" class="chip">B 终点</button><button id="clear-ab" class="chip chip-clear" hidden aria-label="清除 A–B"><svg class="icon"><use href="#i-x"/></svg>清除</button></div><button id="loop" class="chip" aria-pressed="false"><svg class="icon"><use href="#i-repeat"/></svg>循环本节</button><span class="keyboard-hint"><kbd>空格</kbd> 播放 / 暂停 <kbd>R</kbd> 重播当前段</span></div>
+    <div id="audio-alert" class="alert" hidden role="alert"></div>
+   </section>
+   <div id="pause-tools" hidden><span id="pause-label">句子定位</span><button id="previous-sentence" class="chip">[ 前一句</button><button id="next-sentence" class="chip">后一句 ]</button><span id="pause-metrics"></span></div>
+   <div id="practice-heading" class="practice-heading" hidden><h2>按段精听</h2><span class="practice-sub">段落连续显示 · 点击小句号重听单句</span><select id="weak-sort" hidden aria-label="薄弱句排序"><option value="time">按最近出错</option><option value="type">按考点类型</option></select><button id="follow-paragraph" class="chip" aria-pressed="false"><svg class="icon"><use href="#i-follow"/></svg>跟随段落：关</button><button id="locate-paragraph" class="chip"><svg class="icon"><use href="#i-locate"/></svg>定位当前段</button></div>
+   <div id="sentences"></div>
+  </section>
+  <section id="other-view"></section>
+ </main>
+<button id="float-play" class="play-button float-play" aria-label="播放" title="播放 / 暂停（可拖动）"><svg class="icon"><use href="#i-play"/></svg></button>
+ <footer><span class="foot-stat" title="只计算已作答的空">正确率 <strong id="accuracy">—</strong></span><span class="foot-stat">本次错题 <strong id="error-count">0</strong></span></footer>
+</div>
+<audio id="audio" preload="metadata"></audio><input id="file-input" type="file" hidden>
+<dialog id="dialog"><div class="dialog-head"><h2 id="dialog-title"></h2><button id="close-dialog" class="icon-button" aria-label="关闭"><svg class="icon"><use href="#i-x"/></svg></button></div><div id="dialog-body"></div></dialog>
+<div id="toast" role="status" hidden></div>
+<noscript><p style="padding:40px">需要开启 JavaScript。</p></noscript>
+<script src="app/core.js"></script><script src="app/db.js"></script><script src="app/transcript.js"></script><script src="app/blanks.js"></script><script src="app/ai.js"></script><script src="app/pack.js"></script><script src="app/section.js"></script><script src="app/itn.js"></script><script src="app/proofread.js"></script>
+<script src="app/app.js"></script><script src="app/library.js"></script>
+</body></html>

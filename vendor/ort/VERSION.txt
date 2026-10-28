@@ -1,0 +1,1 @@
+ONNX Runtime Web 1.30.0, copied from the npm package onnxruntime-web/dist (ort.wasm.min.js, ort-wasm-simd-threaded.wasm, ort-wasm-simd-threaded.mjs).

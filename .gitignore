@@ -1,0 +1,19 @@
+node_modules/
+.DS_Store
+*.log
+# Your own material never goes into the repository.
+local-test/
+my-material/
+*.zip
+!samples/sample-pack.zip
+*.mp3
+*.m4a
+*.wav
+*.aac
+*.flac
+*.ogg
+!samples/*.mp3
+
+# Temporary files
+_to_delete/
+*.tgz

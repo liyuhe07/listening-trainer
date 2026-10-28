@@ -1,0 +1,19 @@
+{
+ "name": "model.int8.onnx",
+ "size": 131652171,
+ "sha256": "9177a9146cf32ee0cc8152276ef95116f312018d316be37ccf57f7efea81fc1a",
+ "parts": [
+  {
+   "file": "model.int8.onnx.part0",
+   "size": 45000000
+  },
+  {
+   "file": "model.int8.onnx.part1",
+   "size": 45000000
+  },
+  {
+   "file": "model.int8.onnx.part2",
+   "size": 41652171
+  }
+ ]
+}

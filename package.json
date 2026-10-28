@@ -1,0 +1,19 @@
+{
+  "name": "listening-trainer",
+  "version": "1.1.0",
+  "description": "Browser-based intensive listening practice with your own audio and transcripts: in-browser forced alignment, blind listening and dictation.",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "python3 -m http.server 8000",
+    "make-pack": "node tools/make-pack.js"
+  },
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "onnxruntime-node": "^1.30.0",
+    "onnxruntime-web": "^1.30.0"
+  }
+}

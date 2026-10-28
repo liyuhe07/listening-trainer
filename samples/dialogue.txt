@@ -1,0 +1,15 @@
+MAN: Good morning, Riverside Sports Centre. How can I help you?
+WOMAN: Hello. I'm calling about the swimming lessons for adults. Are there any places left on the evening course?
+MAN: Let me have a look. The Tuesday group is full, I'm afraid, but there are still three places on Thursday.
+WOMAN: Thursday would be fine. What time does it start?
+MAN: At a quarter past seven, and each lesson lasts forty-five minutes.
+WOMAN: And how much does the whole course cost?
+MAN: It's £62 for eight weeks, and that includes the use of the gym on the same evening.
+WOMAN: That sounds reasonable. Do I need to bring any equipment?
+MAN: Just a towel and a swimming cap. We provide floats and goggles for beginners.
+WOMAN: Great. Can I book a place now?
+MAN: Of course. Could I have your surname, please?
+WOMAN: It's Hartley. That's H-A-R-T-L-E-Y.
+MAN: Thank you. And a contact number?
+WOMAN: Yes, it's 07946 318 205.
+MAN: Lovely. The first lesson is on the twelfth of March, so please arrive about ten minutes early to fill in a short health questionnaire.
